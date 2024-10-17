@@ -10,6 +10,8 @@ class Buyer(models.Model):
             MaxValueValidator(200)
         ]
     )
+    def __str__(self):
+        return self.name
 
 class Game(models.Model):
     title = models.CharField(max_length=200)

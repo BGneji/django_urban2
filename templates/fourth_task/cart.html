@@ -1,0 +1,19 @@
+{% extends 'fourth_task/menu.html' %}
+
+{% block pagename %}
+<h1>{{ title }}</h1>
+{% endblock %}
+
+{% block menu %}
+{{block.super}}
+{% endblock %}
+
+
+
+{% block content %}
+<h1>{{ cart_content }}</h1>
+{% endblock %}
+
+
+
+<a href="../"><button>Вернуться обратно</button></a>

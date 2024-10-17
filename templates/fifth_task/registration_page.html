@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <br>
+<!--    <form method="post">-->
+<!--        {% csrf_token %}-->
+<!--        <label for="username">Введите логин: </label>-->
+<!--        <input type="text" id="username" name="username" maxlength="30" required>-->
+
+<!--        <label for="password">Введите пароль: </label>-->
+<!--        <input type="password" id="password" name="password" maxlength="30" required>-->
+
+<!--        <label for="repeat_password ">Повторите пароль: </label>-->
+<!--        <input type="password" id="repeat_password " name="repeat_password" maxlength="30" required>-->
+
+
+
+<!--        <button type="submit"> Отправить</button>-->
+<!--    </form>-->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+
+
+</form>
+
+<h1> {{ username }}</h1>
+
+</body>
+</html>

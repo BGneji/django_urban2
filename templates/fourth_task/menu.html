@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+</head>
+<body>
+    {% block pagename %}
+
+    {% endblock %}
+
+    {% block menu %}
+        {% if title == 'Главная страница' %}
+            <br>
+            <br>
+            <a href="./">Главная</a>
+            <br>
+            <a href="./games/">Магазин</a>
+            <br>
+            <a href="./cart/">Корзина</a>
+            {% else %}
+            <br>
+            <br>
+            <a href="../">Главная</a>
+            <br>
+            <a href="../games/">Магазин</a>
+            <br>
+            <a href="../cart/">Корзина</a>
+        {% endif %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+
+</body>
+</html>
+
+
+
+
