@@ -6,17 +6,45 @@
 
 {% block menu %}
 {{block.super}}
+<br>
+<br>
 {% endblock %}
+
 
 {% block content %}
-<ul>
-{% for game in games %}
-<li>{{ game.title }} | {{ game.description }} | Стоимость: {{ game.cost }}<button>Купить</button></li>{% endfor %}
-<br>
-<br>
-<br>
-<a href="../"><button>Вернуться обратно1</button></a>
-</ul>
-<br>
-{% endblock %}
 
+<!-- Выпадающий список для выбора количества элементов на странице -->
+<form method="GET" action="">
+    <label for="items_per_page">Элементов на странице:</label>
+    <select name="items_per_page" id="items_per_page" onchange="this.form.submit()">
+        {% for option in items_per_page_options %}
+            <option value="{{ option }}" {% if option == items_per_page %}selected{% endif %}>{{ option }}</option>
+        {% endfor %}
+    </select>
+</form>
+
+<ul>
+    {% for game in page_obj %}
+        <li>{{ game.title }} ({{ game.cost }}) {{ game.size }}</li>
+    {% endfor %}
+</ul>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1&items_per_page={{ items_per_page }}">&laquo; первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}&items_per_page={{ items_per_page }}">предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&items_per_page={{ items_per_page }}">следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}&items_per_page={{ items_per_page }}">последняя &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

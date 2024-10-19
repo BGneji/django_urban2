@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from task1.forms import UserRegister
@@ -22,6 +23,21 @@ class Games_Class(TemplateView):
         context['title'] = 'Игры'
         context['games'] = games_all
         context['asd'] = 'cart'
+        items_per_page = self.request.GET.get('items_per_page', '3')
+        items_per_page = int(items_per_page) if items_per_page.isdigit() else 3
+
+        # Создаем пагинатор
+        paginator = Paginator(games_all, items_per_page)
+
+        # Получаем номер страницы из GET-запроса, по умолчанию 1
+        page_number = self.request.GET.get('page', '1')
+        page_obj = paginator.get_page(page_number)
+
+        # Добавляем данные в контекст
+        context['page_obj'] = page_obj
+        context['items_per_page_options'] = [1, 2, 3, 5, 10]
+        context['items_per_page'] = items_per_page
+
         return context
 
 
